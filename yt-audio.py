@@ -5,15 +5,15 @@ import os
 import threading
 import sys
 
-# --- Función de Descarga (Ejecutada en un Hilo) ---
+# --- Función de Descarga ---
 
 def descargar_audio_hifi(url_video, directorio_destino, formato_salida, estado_label):
     """
     Descarga el stream de audio con la tasa de bits más alta y lo convierte
-    al formato de salida deseado (FLAC o MP3) usando FFmpeg.
+    al formato de salida desead usando FFmpeg.
     """
     if not url_video or not directorio_destino:
-        messagebox.showerror("Error", "Por favor, introduce la URL y selecciona un directorio.")
+        messagebox.showerror("Errosr", "Por favor, introduce la URL y selecciona un directorio.")
         estado_label.config(text="Estado: Error")
         return
 
@@ -27,7 +27,7 @@ def descargar_audio_hifi(url_video, directorio_destino, formato_salida, estado_l
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': formato_salida,
-            # '0' para FLAC (sin pérdida), '320' para MP3 (máx. calidad)
+            # '0' para FLAC, '320' para MP3
             'preferredquality': '0' if formato_salida == 'flac' else '320', 
         }],
     }
